@@ -1,0 +1,24 @@
+{
+  "name": "funsyn",
+  "version": "0.0.0",
+  "description": "Lightweight wrapper making built-in prototype methods available in functional syntax to facilitate more consistent composition.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha",
+    "test-watch": "mocha --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stuartsan/funsyn"
+  },
+  "author": "Stuart Sandine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stuartsan/funsyn/issues"
+  },
+  "homepage": "https://github.com/stuartsan/funsyn",
+  "devDependencies": {
+    "mocha": "^2.3.2",
+    "expect": "^1.12.2"
+  }
+}
