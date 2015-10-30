@@ -8,7 +8,6 @@ object-oriented _syntax_:
 
 ```javascript
 [1, 2, 3, 4].map(n => n + 1).filter(n => n > 2); 
-
 ```
 
 Can be written like this:
@@ -23,7 +22,7 @@ filter(map([1, 2, 3, 4], n => n + 1), n => n > 2);
 ## How to use
 
 Take any method you'd call on an instance -- say, `'derp'.split` -- and 
-require this version, and call it as a function, passing the instance in
+require the `funsyn` version, and call it as a function, passing the instance 
 as the first argument, followed by any subsequent arguments:
 
 ```javascript
