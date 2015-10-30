@@ -60,7 +60,8 @@ wanting to do something like:
 someArray.map(doSomeStuff).flatten();
 ``` 
 
-Which is cool, but to implement this you have to do this:
+Which is cool, but to implement this you have to do something kind of like
+this:
 
 ```javascript
 Array.prototype.flatten = flatten;
