@@ -1,11 +1,14 @@
 {
   "name": "funsyn",
   "version": "1.0.3",
-  "description": "Lightweight wrapper making built-in prototype methods available in functional syntax to facilitate more consistent composition.",
+  "description": "Functional syntax wrapper around JS built-in types' prototype methods; facilitates more consistent function composition.",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha",
-    "test-watch": "mocha --watch"
+    "test": "mocha --compilers js:babel-core/register",
+    "test-watch": "npm run test -- --watch"
+  },
+  "babel": {
+    "presets": ["es2015"]
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,8 @@
   },
   "homepage": "https://github.com/stuartsan/funsyn",
   "devDependencies": {
-    "mocha": "^2.3.2",
-    "expect": "^1.12.2"
+    "babel-core": "^6.0.14",
+    "expect": "^1.12.2",
+    "mocha": "^2.3.2"
   }
 }

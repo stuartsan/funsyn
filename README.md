@@ -1,10 +1,10 @@
 # funsyn 
 
-Lightweight wrapper making built-in prototype methods available in functional 
-syntax to facilitate more consistent function composition.
+Functional syntax wrapper around JS built-in types' prototype methods; 
+facilitates more consistent function composition.
 
-So code you'd previously write like this, using functional _ideas_ and 
-object-oriented _syntax_: 
+So code you'd normally write like this, using functional ideas and 
+object-oriented syntax:
 
 ```javascript
 [1, 2, 3, 4].map(n => n + 1).filter(n => n > 2); 
@@ -13,17 +13,18 @@ object-oriented _syntax_:
 Can be written like this:
 
 ```javascript
-var map = require('funsyn').Array.map;
-var filter = require('funsyn').Array.filter;
+var { map, filter } = require('funsyn').Array;
 
 filter(map([1, 2, 3, 4], n => n + 1), n => n > 2);
 ```
 
 ## How to use
 
-Take any method you'd call on an instance -- say, `'derp'.split` -- and 
-require the `funsyn` version, and call it as a function, passing the instance 
-as the first argument, followed by any subsequent arguments:
+`npm install funsyn`
+
+For any method you'd normally call on an instance -- say, `'derp'.split` -- 
+require the `funsyn` version of the function and invoke it by passing the 
+instance as the first argument, followed by any subsequent arguments:
 
 ```javascript
 var split = require('funsyn').String.split;
@@ -31,21 +32,24 @@ split('derp');     // => ['derp']
 split('derp', ''); // => ['d', 'e', 'r', 'p']
 ```
 
-Note: presently only works for `Array`, `Date`, `Object`, `RegExp`, and 
+Everything is located at `Type.method` within `funsyn` (e.g., `String.split`).
+
+**Note**: presently only works for `Array`, `Date`, `Object`, `RegExp`, and 
 `String` prototype methods. Maybe others should be included; these seemed like 
 the most obviously useful ones.
 
 ## How it works
 
-This library does hardly anything -- it iterates over the prototypes mentioned
-above and exports syntactically modified versions of their methods, which just 
-delegate calls to the real ones using `apply` and the instance.
+This package does very little: it iterates over the aforementioned prototypes 
+and exports syntactically modified versions of their methods, which delegate 
+calls to the original methods using `fn.apply()` and the instance.
 
 ## Why
 
-This facilitates more consistent composition because you can use the 
-builtins in the same style as your own functions. For example, say you have a 
-function that flattens a two-dimensional array:
+To facilitate more consistent function composition. For one thing, you can 
+maintain consistency between the way built-in and not-built-in functions are 
+invoked, without having to monkey-patch the shit out of the built-in types. Say 
+you have a function that flattens a two-dimensional array:
 
 ```javascript
 function flatten(arr) {
@@ -60,14 +64,16 @@ wanting to do something like:
 someArray.map(doSomeStuff).flatten();
 ``` 
 
-Which is cool, but to implement this you have to do something kind of like
-this:
+Which is cool, but to implement this you have to do something like this:
 
 ```javascript
-Array.prototype.flatten = flatten;
+Array.prototype.flatten = function() {
+  return flatten(this);
+};
 ```
 
-Which is emphatically _not cool_. You could also do this:
+Which is emphatically _not cool_ (because it modifies `Array.prototype`). 
+You could also do this:
 
 ```javascript
 flatten(someArray.map(doSomeStuff));
@@ -81,16 +87,13 @@ So this allows you to do:
 flatten(map(someArray, doSomeStuff));
 ```
 
-Without any major library dependencies.
-
-There are other ways you could solve this use case, like make your flatten 
-function a reducer passed to `[].reduce`, etc, but I like this more.
+Without any significant library dependencies.
 
 **Worth noting**: you can do stuff like this in Firefox already, e.g., 
 `String.split('derp', '')`. I haven't seen it anywhere else though, hence
-this library.
+this package.
 
-## Why not just use underscore, lodash, etc?
+### Why not just use underscore, lodash, etc?
 
 If you need the additional functionality offered by those libraries, do use 
 them.
