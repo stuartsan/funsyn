@@ -1,7 +1,7 @@
 # funsyn 
 
-Functional syntax wrapper around JS built-in types' prototype methods; 
-facilitates more consistent function composition.
+Lightweight functional syntax wrapper around JS built-in types' prototype 
+methods; facilitates more consistent function composition.
 
 So code you'd normally write like this, using functional ideas and 
 object-oriented syntax:
@@ -18,6 +18,8 @@ var { map, filter } = require('funsyn').Array;
 filter(map([1, 2, 3, 4], n => n + 1), n => n > 2);
 ```
 
+With no significant dependencies (the code is < 15 lines).
+
 ## How to use
 
 `npm install funsyn`
@@ -28,6 +30,7 @@ instance as the first argument, followed by any subsequent arguments:
 
 ```javascript
 var split = require('funsyn').String.split;
+
 split('derp');     // => ['derp']
 split('derp', ''); // => ['d', 'e', 'r', 'p']
 ```
