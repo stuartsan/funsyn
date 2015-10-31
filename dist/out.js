@@ -1,18 +1,1 @@
-'use strict';
-
-['Array', 'Date', 'Object', 'RegExp', 'String'].forEach(function (type) {
-  var proto = eval(type).prototype;
-  exports[type] = {};
-  // Iterate over prototype, which isn't enumerable.
-  Object.getOwnPropertyNames(proto)
-  // We only want protoype _methods_.
-  .filter(function (propName) {
-    return typeof proto[propName] === 'function';
-  })
-  // Export each method with functional syntax.
-  .forEach(function (propName) {
-    exports[type][propName] = function (instance /*, args */) {
-      return proto[propName].apply(instance, [].slice.call(arguments, 1));
-    };
-  });
-});
+'use strict';[Array,Date,Object,RegExp,String].forEach(function(type){var proto=type.prototype;exports[type.name] = {};Object.getOwnPropertyNames(proto).filter(function(propName){return typeof proto[propName] === 'function';}).forEach(function(propName){exports[type.name][propName] = function(instance){for(var _len=arguments.length,rest=Array(_len > 1?_len - 1:0),_key=1;_key < _len;_key++) {rest[_key - 1] = arguments[_key];}return proto[propName].apply(instance,rest);};});});

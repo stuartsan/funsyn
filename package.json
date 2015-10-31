@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "test-watch": "npm run test -- --watch",
-    "compile": "babel src/index.js --out-file dist/out.js",
+    "compile": "babel src/index.js --out-file dist/out.js --compact --no-comments",
     "prepublish": "npm run compile"
   },
   "babel": {

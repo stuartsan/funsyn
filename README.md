@@ -18,7 +18,7 @@ var { map, filter } = require('funsyn').Array;
 filter(map([1, 2, 3, 4], n => n + 1), n => n > 2);
 ```
 
-With no significant dependencies (the code is < 15 lines).
+With no significant dependencies (the code is < 500 bytes).
 
 ## How to use
 
