@@ -1,6 +1,6 @@
 {
   "name": "funsyn",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lightweight functional syntax wrapper around JS built-in types' prototype methods; facilitates more consistent function composition.",
   "main": "dist/out.js",
   "scripts": {
