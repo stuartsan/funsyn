@@ -12,12 +12,18 @@ describe('fn syntax', () => {
 
   it('should change the methods\' syntax but not behavior', () => { 
     var join = funsyn.Array.join;
-    expect(join(['a', 'b', 'c'], '')).toEqual('abc');
+    expect(join(['a', 'b', 'c'], '')).toEqual(['a', 'b', 'c'].join(''));
 
     var split = funsyn.String.split;
-    expect(split('abc', '')).toEqual(['a', 'b', 'c']);
+    expect(split('abc', '')).toEqual('abc'.split(''));
 
     var test = funsyn.RegExp.test;
-    expect(test(/derp/, 'derp')).toEqual(true);
+    expect(test(/derp/, 'derp')).toEqual(/derp/.test('derp'));
   });
+
+  it('should preserve function names for stack traces', () => {
+    expect(funsyn.Array.join.name).toEqual(Array.prototype.join.name);
+    expect(funsyn.String.split.name).toEqual(String.prototype.split.name);
+  });
+
 });
