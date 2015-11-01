@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "test-watch": "npm run test -- --watch",
-    "compile": "babel src/index.js --out-file dist/out.js --compact --no-comments",
+    "compile": "babel src/index.js | uglifyjs - --mangle --compress -o dist/out.js",
     "prepublish": "npm run compile"
   },
   "babel": {
@@ -25,6 +25,7 @@
   "devDependencies": {
     "babel-core": "^6.0.14",
     "expect": "^1.12.2",
-    "mocha": "^2.3.2"
+    "mocha": "^2.3.2",
+    "uglify-js": "^2.5.0"
   }
 }
